@@ -6,13 +6,15 @@ import lottery from './lottery';
 
 class App extends Component {
   state = {
-    manager: ''
+    manager: '',
+    players: [],
   };
 
   async componentDidMount() {
     const manager = await lottery.methods.manager().call();
+    const players = await lottery.methods.getPlayers().call();
 
-    this.setState({ manager: manager })
+    this.setState({ manager, players })
   }
 
   render() {
